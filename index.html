@@ -1,0 +1,1479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daffa Al Syaddad - Portfolio</title>
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter dari Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome untuk ikon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Custom styles untuk efek tambahan */
+      .gradient-glow {
+        background: radial-gradient(
+          circle at center,
+          rgba(139, 92, 246, 0.15) 0%,
+          transparent 70%
+        );
+      }
+
+      .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(17, 17, 17, 0.8);
+      }
+
+      .hover-glow:hover {
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+      }
+
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .bg-grid {
+        background-image:
+          linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
+
+      .skill-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .skill-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgb(139, 92, 246);
+        box-shadow: 0 20px 40px -10px rgba(139, 92, 246, 0.5);
+      }
+
+      .project-card {
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .project-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 30px 60px -15px rgba(139, 92, 246, 0.5);
+      }
+
+      .project-card:hover img {
+        transform: scale(1.1);
+      }
+
+      .cert-card {
+        transition: all 0.4s ease;
+      }
+
+      .cert-card:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 90%;
+        max-width: 800px;
+        animation: zoom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      @keyframes zoom {
+        from {
+          transform: scale(0.3);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        color: #f1f1f1;
+        font-size: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .close:hover {
+        color: rgb(139, 92, 246);
+        transform: rotate(90deg);
+      }
+
+      /* Timeline styles */
+      .timeline-item {
+        position: relative;
+        padding-left: 2rem;
+        border-left: 2px solid rgba(139, 92, 246, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -8px;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: rgb(139, 92, 246);
+        box-shadow: 0 0 20px rgb(139, 92, 246);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-item:hover {
+        border-left-color: rgb(139, 92, 246);
+        transform: translateX(10px);
+      }
+
+      .timeline-item:hover::before {
+        transform: scale(1.3);
+        box-shadow: 0 0 30px rgb(139, 92, 246);
+      }
+
+      /* Form styles */
+      .form-input {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus {
+        border-color: rgb(139, 92, 246);
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        outline: none;
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.02);
+      }
+
+      /* Mobile menu */
+      .mobile-menu {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .mobile-menu.hidden {
+        transform: translateX(-100%);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom container untuk center yang sempurna */
+      .container-custom {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      @media (min-width: 640px) {
+        .container-custom {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .container-custom {
+          padding-left: 4rem;
+          padding-right: 4rem;
+        }
+      }
+
+      /* Section spacing */
+      section {
+        scroll-margin-top: 80px;
+      }
+
+      /* Text gradient mewah */
+      .text-gradient {
+        background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Border gradient */
+      .border-gradient {
+        border: double 1px transparent;
+        background-image:
+          linear-gradient(#1a1a1a, #1a1a1a),
+          linear-gradient(135deg, #a78bfa, #22d3ee);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+      }
+
+      /* Stat card hover */
+      .stat-card {
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px -10px rgba(139, 92, 246, 0.4);
+      }
+    </style>
+  </head>
+  <body class="bg-[#0f0f0f] text-white antialiased">
+    <!-- ==================== NAVBAR ==================== -->
+    <nav
+      class="fixed top-0 w-full z-50 glass-effect border-b border-purple-500/20"
+    >
+      <div class="container-custom py-5">
+        <div class="flex items-center justify-between">
+          <!-- Logo/Nama -->
+          <a href="#home" class="text-2xl font-bold text-gradient">
+            daffa's portofolio
+          </a>
+
+          <!-- Desktop Menu - Tengah -->
+          <div
+            class="hidden md:flex items-center justify-center space-x-8 absolute left-1/2 transform -translate-x-1/2"
+          >
+            <a
+              href="#home"
+              class="text-gray-300 hover:text-purple-400 transition text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="#about"
+              class="text-gray-300 hover:text-purple-400 transition text-sm font-medium"
+              >About</a
+            >
+            <a
+              href="#skills"
+              class="text-gray-300 hover:text-purple-400 transition text-sm font-medium"
+              >Skills</a
+            >
+            <a
+              href="#projects"
+              class="text-gray-300 hover:text-purple-400 transition text-sm font-medium"
+              >Projects</a
+            >
+            <a
+              href="#certificates"
+              class="text-gray-300 hover:text-purple-400 transition text-sm font-medium"
+              >Certificates</a
+            >
+            <a
+              href="#experience"
+              class="text-gray-300 hover:text-purple-400 transition text-sm font-medium"
+              >Experience</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-300 hover:text-purple-400 transition text-sm font-medium"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Download CV Button & Mobile Menu Toggle -->
+          <div class="flex items-center space-x-4">
+            <a
+              href="https://gemini.google.com/app"
+              class="hidden md:block px-6 py-2.5 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 rounded-full text-sm font-semibold transition hover:shadow-lg hover:shadow-purple-500/30"
+            >
+              Gemini
+            </a>
+            <button
+              id="menu-toggle"
+              class="md:hidden text-2xl text-gray-300 hover:text-purple-400 transition"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="md:hidden fixed top-0 left-0 w-72 h-full glass-effect border-r border-purple-500/20 transform -translate-x-full transition-transform duration-300 ease-in-out p-8"
+        >
+          <button
+            id="close-menu"
+            class="absolute top-6 right-6 text-2xl text-gray-300 hover:text-purple-400 transition"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+          <div class="flex flex-col space-y-6 mt-16">
+            <a
+              href="#home"
+              class="text-gray-300 hover:text-purple-400 transition text-lg font-medium py-2"
+              >Home</a
+            >
+            <a
+              href="#about"
+              class="text-gray-300 hover:text-purple-400 transition text-lg font-medium py-2"
+              >About</a
+            >
+            <a
+              href="#skills"
+              class="text-gray-300 hover:text-purple-400 transition text-lg font-medium py-2"
+              >Skills</a
+            >
+            <a
+              href="#projects"
+              class="text-gray-300 hover:text-purple-400 transition text-lg font-medium py-2"
+              >Projects</a
+            >
+            <a
+              href="#certificates"
+              class="text-gray-300 hover:text-purple-400 transition text-lg font-medium py-2"
+              >Certificates</a
+            >
+            <a
+              href="#experience"
+              class="text-gray-300 hover:text-purple-400 transition text-lg font-medium py-2"
+              >Experience</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-300 hover:text-purple-400 transition text-lg font-medium py-2"
+              >Contact</a
+            >
+            <a
+              href="#"
+              class="mt-8 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 rounded-full text-center text-sm font-semibold transition"
+            >
+              Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="home" class="min-h-screen pt-32 relative overflow-hidden">
+      <!-- Background grid dan glow yang lebih mewah -->
+      <div class="absolute inset-0 bg-grid opacity-30"></div>
+      <div class="absolute inset-0 gradient-glow"></div>
+      <div
+        class="absolute top-20 left-10 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-20 right-10 w-72 h-72 bg-cyan-600/20 rounded-full blur-3xl"
+      ></div>
+
+      <div class="container-custom relative z-10">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-16"
+        >
+          <!-- Left Content -->
+          <div class="flex-1 text-center md:text-left">
+            <div
+              class="inline-block mb-4 px-4 py-2 bg-purple-600/10 rounded-full border border-purple-500/20"
+            >
+              <span class="text-purple-400 text-sm font-medium animate-pulse"
+                >Welcome!</span
+              >
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 leading-tight">
+              Daffa Al <span class="text-gradient">Syaddad</span>
+            </h1>
+            <h2 class="text-xl md:text-2xl text-gray-400 mb-6 font-light">
+              Computer Science Student | AI Enthusiast | Backend Developer
+            </h2>
+            <p
+              class="text-gray-300 mb-8 max-w-xl mx-auto md:mx-0 leading-relaxed"
+            >
+              Mahasiswa Ilmu Komputer dari Universitas Riau yang memiliki
+              ketertarikan pada Artificial Intelligence, Backend Development,
+              dan Multimedia. Bersemangat dalam membangun solusi teknologi yang
+              inovatif dan berdampak.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+              <a
+                href="#projects"
+                class="group px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 rounded-full font-semibold transition hover:shadow-lg hover:shadow-purple-500/30 flex items-center gap-2"
+              >
+                View My Projects
+                <i
+                  class="fas fa-arrow-right group-hover:translate-x-1 transition"
+                ></i>
+              </a>
+              <a
+                href="#contact"
+                class="px-8 py-4 border-2 border-purple-500/50 hover:border-purple-500 hover:bg-purple-600/10 rounded-full font-semibold transition"
+              >
+                Contact Me
+              </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex gap-4 mt-10 justify-center md:justify-start">
+              <a
+                href="https://github.com/daffaalsyaddad"
+                class="w-12 h-12 bg-[#1a1a1a] rounded-full flex items-center justify-center text-xl text-gray-400 hover:text-purple-400 hover:border-purple-500 border border-transparent transition hover:scale-110"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/daffa-al-syaddad/"
+                class="w-12 h-12 bg-[#1a1a1a] rounded-full flex items-center justify-center text-xl text-gray-400 hover:text-purple-400 hover:border-purple-500 border border-transparent transition hover:scale-110"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/daffaalsyaddad?igsh=MWxuYjcyYjNpZXV5ZA=="
+                class="w-12 h-12 bg-[#1a1a1a] rounded-full flex items-center justify-center text-xl text-gray-400 hover:text-purple-400 hover:border-purple-500 border border-transparent transition hover:scale-110"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Content - Ilustrasi/Image yang lebih mewah -->
+          <div class="flex-1 relative">
+            <div class="relative w-72 h-72 md:w-96 md:h-96 mx-auto floating">
+              <!-- Circular gradient background -->
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-cyan-600/30 rounded-full blur-3xl"
+              ></div>
+
+              <!-- Ilustrasi/Placeholder untuk developer workspace dengan desain lebih mewah -->
+              <div
+                class="relative bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-3xl p-8 border-2 border-purple-500/20 hover:border-purple-500/40 transition-all duration-500 hover-glow"
+              >
+                <!-- Decorative lines -->
+                <div class="grid grid-cols-3 gap-2 mb-6">
+                  <div
+                    class="h-1 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full"
+                  ></div>
+                  <div
+                    class="h-1 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full opacity-50"
+                  ></div>
+                  <div
+                    class="h-1 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full opacity-25"
+                  ></div>
+                </div>
+
+                <!-- Code-like content -->
+                <div class="space-y-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                    <div
+                      class="h-3 flex-1 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-full"
+                    ></div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-cyan-500 rounded-full"></div>
+                    <div
+                      class="h-3 flex-1 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-full"
+                    ></div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                    <div
+                      class="h-3 flex-1 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-full"
+                    ></div>
+                  </div>
+
+                  <!-- Code blocks -->
+                  <div class="grid grid-cols-2 gap-3 mt-6">
+                    <div
+                      class="h-20 bg-gradient-to-br from-purple-600/10 to-cyan-600/10 rounded-xl border border-purple-500/20 flex items-center justify-center"
+                    >
+                      <i class="fas fa-code text-2xl text-purple-400"></i>
+                    </div>
+                    <div
+                      class="h-20 bg-gradient-to-br from-purple-600/10 to-cyan-600/10 rounded-xl border border-purple-500/20 flex items-center justify-center"
+                    >
+                      <i class="fas fa-robot text-2xl text-cyan-400"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI/Developer text -->
+                <div class="mt-6 text-center">
+                  <span
+                    class="text-sm text-gray-400 bg-purple-600/10 px-4 py-2 rounded-full"
+                  >
+                    <i class="fas fa-code text-purple-400 mr-2"></i> AI &
+                    Development
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="py-24 bg-[#0a0a0a]">
+      <div class="container-custom">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+          About <span class="text-gradient">Me</span>
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 mx-auto mb-16 rounded-full"
+        ></div>
+
+        <div class="flex flex-col md:flex-row items-center gap-16">
+          <!-- Profile Photo -->
+          <div class="w-72 h-72 relative group">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition duration-500"
+            ></div>
+            <div
+              class="relative w-full h-full bg-[#1a1a1a] rounded-3xl overflow-hidden border-2 border-purple-500/20 group-hover:border-purple-500/40 transition-all duration-500"
+            >
+              <!-- Placeholder untuk foto profil dengan efek -->
+              <div
+                class="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-900/30 to-cyan-900/30"
+              >
+                <i
+                  class="fas fa-user-circle text-8xl text-gray-400 group-hover:scale-110 transition duration-500"
+                ></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- About Text -->
+          <div class="flex-1 text-center md:text-left">
+            <h3 class="text-3xl font-bold mb-4">Daffa Al Syaddad</h3>
+            <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+              Seorang mahasiswa Ilmu Komputer yang memiliki minat kuat pada
+              Artificial Intelligence, Backend Development, dan Multimedia.
+              Senang mempelajari teknologi baru, membangun proyek digital, dan
+              mengeksplorasi inovasi di bidang teknologi.
+            </p>
+
+            <!-- Info Cards dalam grid yang lebih rapi -->
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div
+                class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-5 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition stat-card"
+              >
+                <p class="text-sm text-gray-400 mb-1">Universitas</p>
+                <p class="font-semibold text-purple-400">Universitas Riau</p>
+              </div>
+              <div
+                class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-5 rounded-xl border border-cyan-500/20 hover:border-cyan-500/40 transition stat-card"
+              >
+                <p class="text-sm text-gray-400 mb-1">Jurusan</p>
+                <p class="font-semibold text-cyan-400">Ilmu Komputer</p>
+              </div>
+              <div
+                class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-5 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition stat-card"
+              >
+                <p class="text-sm text-gray-400 mb-1">Program Studi</p>
+                <p class="font-semibold text-purple-400">Sistem Informasi</p>
+              </div>
+              <div
+                class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-5 rounded-xl border border-cyan-500/20 hover:border-cyan-500/40 transition stat-card"
+              >
+                <p class="text-sm text-gray-400 mb-1">Semester</p>
+                <p class="font-semibold text-cyan-400">5</p>
+              </div>
+              <div
+                class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-5 rounded-xl border border-cyan-500/20 hover:border-cyan-500/40 transition stat-card"
+              >
+                <p class="text-sm text-gray-400 mb-1">IPK</p>
+                <p class="font-semibold text-cyan-400">3.96</p>
+              </div>
+              <div
+                class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-5 rounded-xl border border-cyan-500/20 hover:border-cyan-500/40 transition stat-card"
+              >
+                <p class="text-sm text-gray-400 mb-1">Scholarship</p>
+                <p class="font-semibold text-cyan-400">
+                  GenBI by Bank Indonesia
+                </p>
+              </div>
+            </div>
+
+            <!-- Statistic Cards dengan desain lebih mewah -->
+            <div class="grid grid-cols-3 gap-4">
+              <div
+                class="bg-gradient-to-br from-purple-600/10 to-cyan-600/10 p-6 rounded-2xl text-center border border-purple-500/20 hover:scale-105 transition-all duration-300 stat-card"
+              >
+                <div class="text-3xl font-bold text-gradient mb-1">10+</div>
+                <div class="text-sm text-gray-400">Projects</div>
+              </div>
+              <div
+                class="bg-gradient-to-br from-purple-600/10 to-cyan-600/10 p-6 rounded-2xl text-center border border-purple-500/20 hover:scale-105 transition-all duration-300 stat-card"
+              >
+                <div class="text-3xl font-bold text-gradient mb-1">8</div>
+                <div class="text-sm text-gray-400">Certificates</div>
+              </div>
+              <div
+                class="bg-gradient-to-br from-purple-600/10 to-cyan-600/10 p-6 rounded-2xl text-center border border-purple-500/20 hover:scale-105 transition-all duration-300 stat-card"
+              >
+                <div class="text-3xl font-bold text-gradient mb-1">15+</div>
+                <div class="text-sm text-gray-400">Skills</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS SECTION ==================== -->
+    <section id="skills" class="py-24">
+      <div class="container-custom">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+          My <span class="text-gradient">Skills</span>
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 mx-auto mb-16 rounded-full"
+        ></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Backend Card -->
+          <div
+            class="skill-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-cyan-500/20 hover:border-cyan-500 transition"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-server text-3xl text-cyan-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gradient">Backend Dev</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-cyan-400"></i>
+                PHP
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-cyan-400"></i>
+                Java
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-cyan-400"></i>
+                MySQL
+              </li>
+            </ul>
+          </div>
+
+          <!-- Web Development Card -->
+          <div
+            class="skill-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-purple-500/20 hover:border-purple-500 transition"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-code text-3xl text-purple-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gradient">Web Dev</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-purple-400"></i>
+                HTML
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-purple-400"></i>
+                TailwindCSS
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-purple-400"></i>
+                JavaScript
+              </li>
+            </ul>
+          </div>
+          <!-- Teaching -->
+          <div
+            class="skill-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-purple-500/20 hover:border-purple-500 transition"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-chalkboard-teacher text-3xl text-purple-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gradient">Teaching</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-purple-400"></i>
+                SMAN 4 Pekanbaru
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-purple-400"></i>
+                SMP Juara Pekanbaru
+              </li>
+            </ul>
+          </div>
+
+          <!-- Multimedia Card -->
+          <div
+            class="skill-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-cyan-500/20 hover:border-cyan-500 transition"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-camera text-3xl text-cyan-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gradient">Multimedia</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-cyan-400"></i>
+                Photography
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-cyan-400"></i>
+                Video Editing
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fas fa-circle text-xs text-cyan-400"></i>
+                Design
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ==================== -->
+    <section id="projects" class="py-24 bg-[#0a0a0a]">
+      <div class="container-custom">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+          Featured <span class="text-gradient">Projects</span>
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 mx-auto mb-16 rounded-full"
+        ></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project Card 1 -->
+          <div
+            class="project-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-2xl overflow-hidden border border-purple-500/20 hover:border-purple-500/40"
+          >
+            <div class="relative overflow-hidden h-56">
+              <img
+                src="/src/matdis.png"
+                alt="Project"
+                class="w-full h-full object-cover transition duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"
+              ></div>
+              <div
+                class="absolute top-4 right-4 px-3 py-1 bg-purple-600/90 rounded-full text-xs font-semibold"
+              >
+                Featured
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gradient">
+                Matematika Diskrit's Project
+              </h3>
+              <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                Project ini berfokus pada implementasi algoritma matematika
+                diskrit dalam konteks pemecahan masalah komputasional.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >HTML</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >TailwindCSS</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >JavaScript</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <a
+                  href="https://unri.vercel.app/"
+                  class="flex-1 px-4 py-3 border-2 border-purple-500/30 hover:border-purple-500 hover:bg-purple-600/10 rounded-xl text-sm text-center transition font-medium"
+                  >Live Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 2 -->
+          <div
+            class="project-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-2xl overflow-hidden border border-cyan-500/20 hover:border-cyan-500/40"
+          >
+            <div class="relative overflow-hidden h-56">
+              <img
+                src="/src/pdm.png"
+                alt="Project"
+                class="w-full h-full object-cover transition duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-cyan-900/80 to-transparent"
+              ></div>
+              <div
+                class="absolute top-4 right-4 px-3 py-1 bg-cyan-600/90 rounded-full text-xs font-semibold"
+              >
+                Popular
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gradient">
+                Product Design Management
+              </h3>
+              <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                Tugas Sistem Informasi Manajemen berbasis website.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >HTML</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >TailwindCSS</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >JavaScript</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <a
+                  href="https://pdm-sim-kelompok3.vercel.app/"
+                  class="flex-1 px-4 py-3 border-2 border-cyan-500/30 hover:border-cyan-500 hover:bg-cyan-600/10 rounded-xl text-sm text-center transition font-medium"
+                  >Live Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 3 -->
+          <div
+            class="project-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-2xl overflow-hidden border border-purple-500/20 hover:border-purple-500/40"
+          >
+            <div class="relative overflow-hidden h-56">
+              <img
+                src="/src/halodoc.png"
+                alt="Project"
+                class="w-full h-full object-cover transition duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent"
+              ></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gradient">
+                Halodoc by me
+              </h3>
+              <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                Tugas Rekayasa Perangkat Lunak berbasis website.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >HTML</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >TailwindCSS</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-500/20"
+                  >JavaScript</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <a
+                  href="https://halodoc-rpl.netlify.app/"
+                  class="flex-1 px-4 py-3 border-2 border-purple-500/30 hover:border-purple-500 hover:bg-purple-600/10 rounded-xl text-sm text-center transition font-medium"
+                  >Live Demo</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CERTIFICATES SECTION ==================== -->
+    <section id="certificates" class="py-24">
+      <div class="container-custom">
+        <!-- Title -->
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+          My <span class="text-gradient">Certificates</span>
+        </h2>
+
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 mx-auto mb-16 rounded-full"
+        ></div>
+
+        <!-- GRID CERTIFICATES -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- TARUH CARD DI SINI -->
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Training Capacity Building by Bank Indonesia',
+                'src/119 Daffa Al Syaddad/0.jpg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="src/119 Daffa Al Syaddad/0.jpg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Training Capacity Building by Bank Indonesia</h3>
+              <p class="text-sm text-gray-400">belajarlagi</p>
+              <p class="text-xs text-gray-500 mt-2">2025</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Backend in Website Development - MySkill',
+                'src/Daffa Al Syaddad - E-Certif SC Backend in Website Development MySkill/0.jpg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="src/Daffa Al Syaddad - E-Certif SC Backend in Website Development MySkill/0.jpg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Backend Development - MySkill</h3>
+              <p class="text-sm text-gray-400">MySkill</p>
+              <p class="text-xs text-gray-500 mt-2">2024</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Pemenang Favorit Fotografi',
+                'src/Daffa Al Syaddad Fav  Foto/0.jpg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="src/Daffa Al Syaddad Fav  Foto/0.jpg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Pemenang Favorit Fotografi</h3>
+              <p class="text-sm text-gray-400">SEMIRATA</p>
+              <p class="text-xs text-gray-500 mt-2">2025</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Dewan Juri Video Kreatif',
+                'src/Daffa Al Syaddad/0.jpg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="src/Daffa Al Syaddad/0.jpg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Dewan Juri Video Kreatif</h3>
+              <p class="text-sm text-gray-400">UIN Suska Riau</p>
+              <p class="text-xs text-gray-500 mt-2">2025</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Magang HUMAS Batch I',
+                'src/Daffa Al Syaddad_Sertifikat_Video_Grafis_Magang_Humas_Batch_I/0.jpg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="src/Daffa Al Syaddad_Sertifikat_Video_Grafis_Magang_Humas_Batch_I/0.jpg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Magang HUMAS Batch I</h3>
+              <p class="text-sm text-gray-400">UNRI</p>
+              <p class="text-xs text-gray-500 mt-2">2025</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Juara 3 Fotografi',
+                'src/Juara 3 Bahana/0.jpg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="src/Juara 3 Bahana/0.jpg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Juara 3 Fotografi</h3>
+              <p class="text-sm text-gray-400">Bahana</p>
+              <p class="text-xs text-gray-500 mt-2">2025</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Juara 3 Videografi',
+                'src/JUARA 3_TIM SEMPENA 4 MEDIA/0.jpg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="src/JUARA 3_TIM SEMPENA 4 MEDIA/0.jpg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Juara 3 Videografi</h3>
+              <p class="text-sm text-gray-400">UIR</p>
+              <p class="text-xs text-gray-500 mt-2">2023</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Juara 2 Film Pendek',
+                'src/codex.jpeg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="/src/codex.jpeg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Juara 2 Film Pendek</h3>
+              <p class="text-sm text-gray-400">UNRI</p>
+              <p class="text-xs text-gray-500 mt-2">2025</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Peserta Terbaik Multimedia',
+                'src/peserteterbaikmultimedia.jpeg',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="/src/peserteterbaikmultimedia.jpeg"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Peserta Terbaik Multimedia</h3>
+              <p class="text-sm text-gray-400">UNRI</p>
+              <p class="text-xs text-gray-500 mt-2">2024</p>
+            </div>
+          </div>
+          <div
+            class="cert-card bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl overflow-hidden border border-purple-500/20 cursor-pointer group"
+            onclick="
+              openModal(
+                'Juara 1 Fotografi Pariwisata',
+                'src/tourism.png',
+              )
+            "
+          >
+            <div class="h-44 overflow-hidden">
+              <img
+                src="/src/tourism.png"
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold mb-1 text-gradient">Peserta Terbaik Multimedia</h3>
+              <p class="text-sm text-gray-400">UNRI</p>
+              <p class="text-xs text-gray-500 mt-2">2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal Preview Certificate -->
+    <div
+      id="certModal"
+      class="fixed inset-0 hidden items-center justify-center bg-black/80 backdrop-blur-sm z-50"
+    >
+      <div
+        class="relative bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-3xl border border-purple-500/30 max-w-4xl w-[90%] text-center"
+      >
+        <!-- Close Button -->
+        <button
+          onclick="closeModal()"
+          class="absolute top-4 right-5 text-gray-400 hover:text-white text-3xl"
+        >
+          &times;
+        </button>
+
+        <!-- Title -->
+        <h3 id="modalTitle" class="text-3xl font-bold mb-6 text-gradient"></h3>
+
+        <!-- Certificate Image -->
+        <img
+          id="modalImage"
+          class="mx-auto max-h-[550px] rounded-xl shadow-xl border border-purple-500/20"
+        />
+      </div>
+    </div>
+
+    <!-- ==================== EXPERIENCE SECTION ==================== -->
+<section id="experience" class="py-24 bg-[#0a0a0a]">
+  <div class="container-custom">
+
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+      Experience & <span class="text-gradient">Achievements</span>
+    </h2>
+
+    <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 mx-auto mb-16 rounded-full"></div>
+
+    <div class="max-w-4xl mx-auto">
+
+      <div class="space-y-8">
+
+        <!-- Bank Indonesia Training -->
+        <div class="timeline-item group">
+          <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-purple-500/20 group-hover:border-purple-500 transition">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+              <h3 class="font-bold text-xl text-gradient">
+                Training Capacity Building Program
+              </h3>
+              <span class="text-sm px-4 py-1.5 bg-purple-600/20 rounded-full text-purple-400 border border-purple-500/20">
+                2025
+              </span>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Mengikuti program pelatihan Capacity Building yang diselenggarakan oleh Bank Indonesia dan BelajarLagi untuk meningkatkan keterampilan dalam pengembangan kapasitas digital dan kreativitas konten.
+            </p>
+          </div>
+        </div>
+
+        <!-- Backend Development -->
+        <div class="timeline-item group">
+          <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-cyan-500/20 group-hover:border-cyan-500 transition">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+              <h3 class="font-bold text-xl text-gradient">
+                Backend Development Training
+              </h3>
+              <span class="text-sm px-4 py-1.5 bg-cyan-600/20 rounded-full text-cyan-400 border border-cyan-500/20">
+                2024
+              </span>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Menyelesaikan program pelatihan Backend in Website Development oleh MySkill, mempelajari konsep pengembangan server-side, REST API, serta dasar pengelolaan database untuk aplikasi web modern.
+            </p>
+          </div>
+        </div>
+
+        <!-- Multimedia Achievement -->
+        <div class="timeline-item group">
+          <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-purple-500/20 group-hover:border-purple-500 transition">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+              <h3 class="font-bold text-xl text-gradient">
+                Best Multimedia Participant
+              </h3>
+              <span class="text-sm px-4 py-1.5 bg-purple-600/20 rounded-full text-purple-400 border border-purple-500/20">
+                2024
+              </span>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Meraih penghargaan Peserta Terbaik dalam bidang Multimedia di Universitas Riau atas kreativitas dan kemampuan produksi konten visual serta media digital.
+            </p>
+          </div>
+        </div>
+
+        <!-- Photography Achievements -->
+        <div class="timeline-item group">
+          <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-cyan-500/20 group-hover:border-cyan-500 transition">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+              <h3 class="font-bold text-xl text-gradient">
+                Photography Competition Achievements
+              </h3>
+              <span class="text-sm px-4 py-1.5 bg-cyan-600/20 rounded-full text-cyan-400 border border-cyan-500/20">
+                2023 - 2025
+              </span>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Berhasil meraih beberapa penghargaan dalam kompetisi fotografi, termasuk Juara 3 Fotografi Bahana, Juara 1 Fotografi Pariwisata, serta Pemenang Favorit Fotografi pada kompetisi tingkat regional.
+            </p>
+          </div>
+        </div>
+
+        <!-- Videography -->
+        <div class="timeline-item group">
+          <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-purple-500/20 group-hover:border-purple-500 transition">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+              <h3 class="font-bold text-xl text-gradient">
+                Videography & Film Competition
+              </h3>
+              <span class="text-sm px-4 py-1.5 bg-purple-600/20 rounded-full text-purple-400 border border-purple-500/20">
+                2023 - 2025
+              </span>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Meraih Juara 3 Videografi pada kompetisi Sempena Media serta Juara 2 Film Pendek pada kompetisi kreatif tingkat universitas dengan karya video storytelling.
+            </p>
+          </div>
+        </div>
+
+        <!-- Judge Experience -->
+        <div class="timeline-item group">
+          <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl border border-cyan-500/20 group-hover:border-cyan-500 transition">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-3">
+              <h3 class="font-bold text-xl text-gradient">
+                Creative Video Competition Judge
+              </h3>
+              <span class="text-sm px-4 py-1.5 bg-cyan-600/20 rounded-full text-cyan-400 border border-cyan-500/20">
+                2025
+              </span>
+            </div>
+            <p class="text-gray-400 leading-relaxed">
+              Menjadi dewan juri dalam kompetisi Video Kreatif di UIN Suska Riau, menilai kreativitas, storytelling, serta kualitas produksi media digital peserta lomba.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section id="contact" class="py-24">
+      <div class="container-custom">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+          Get In <span class="text-gradient">Touch</span>
+        </h2>
+        <div
+          class="w-24 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 mx-auto mb-16 rounded-full"
+        ></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <!-- Contact Info -->
+          <div class="space-y-8">
+            <h3 class="text-3xl font-bold text-gradient">Let's Connect</h3>
+            <p class="text-gray-400 text-lg leading-relaxed">
+              Saya selalu terbuka untuk diskusi tentang teknologi, kolaborasi
+              proyek, atau kesempatan kerjasama lainnya. Jangan ragu untuk
+              menghubungi saya!
+            </p>
+
+            <!-- Contact Details -->
+            <div class="space-y-5">
+              <div
+                class="flex items-center gap-5 text-gray-300 hover:text-purple-400 transition group cursor-pointer"
+              >
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition"
+                >
+                  <i class="fas fa-envelope text-xl text-gradient"></i>
+                </div>
+                <span class="text-lg">daffaalsyaddadd@gmail.com</span>
+              </div>
+              <div
+                class="flex items-center gap-5 text-gray-300 hover:text-purple-400 transition group cursor-pointer"
+              >
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition"
+                >
+                  <i class="fab fa-linkedin-in text-xl text-gradient"></i>
+                </div>
+                <span class="text-lg">linkedin.com/in/daffasyaddad</span>
+              </div>
+              <div
+                class="flex items-center gap-5 text-gray-300 hover:text-purple-400 transition group cursor-pointer"
+              >
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition"
+                >
+                  <i class="fab fa-github text-xl text-gradient"></i>
+                </div>
+                <span class="text-lg">github.com/daffasyaddad</span>
+              </div>
+              <div
+                class="flex items-center gap-5 text-gray-300 hover:text-purple-400 transition group cursor-pointer"
+              >
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition"
+                >
+                  <i class="fab fa-instagram text-xl text-gradient"></i>
+                </div>
+                <span class="text-lg">@daffaalsyaddad</span>
+              </div>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="flex gap-4 pt-4">
+              <a
+                href="#"
+                class="w-14 h-14 bg-[#1a1a1a] rounded-2xl flex items-center justify-center text-2xl text-gray-400 hover:text-purple-400 border border-purple-500/20 hover:border-purple-500 transition hover:scale-110"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://linkedin.com/in/daffaalsyaddad"
+                class="w-14 h-14 bg-[#1a1a1a] rounded-2xl flex items-center justify-center text-2xl text-gray-400 hover:text-purple-400 border border-purple-500/20 hover:border-purple-500 transition hover:scale-110"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://instagram.com/daffaalsyaddad"
+                class="w-14 h-14 bg-[#1a1a1a] rounded-2xl flex items-center justify-center text-2xl text-gray-400 hover:text-purple-400 border border-purple-500/20 hover:border-purple-500 transition hover:scale-110"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              
+            </div>
+          </div>
+
+          <!-- Contact Form dengan desain lebih mewah -->
+          <div
+            class="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 md:p-10 rounded-3xl border border-purple-500/20"
+          >
+            <form
+              id="contactForm"
+              class="space-y-6"
+              onsubmit="handleSubmit(event)"
+            >
+              <div>
+                <label class="block text-sm font-medium text-gray-400 mb-2"
+                  >Your Name</label
+                >
+                <input
+                  type="text"
+                  placeholder="daffaalsyaddad"
+                  required
+                  class="form-input w-full px-6 py-4 rounded-2xl bg-[#0f0f0f] border border-purple-500/20 text-white placeholder-gray-600 focus:border-purple-500 transition"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-400 mb-2"
+                  >Your Email</label
+                >
+                <input
+                  type="email"
+                  placeholder="daffaalsyaddad@gmail.com"
+                  required
+                  class="form-input w-full px-6 py-4 rounded-2xl bg-[#0f0f0f] border border-purple-500/20 text-white placeholder-gray-600 focus:border-purple-500 transition"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-400 mb-2"
+                  >Your Message</label
+                >
+                <textarea
+                  rows="5"
+                  placeholder="Tell me about your project..."
+                  required
+                  class="form-input w-full px-6 py-4 rounded-2xl bg-[#0f0f0f] border border-purple-500/20 text-white placeholder-gray-600 focus:border-purple-500 transition resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full px-8 py-5 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 rounded-2xl font-semibold text-lg transition hover:shadow-lg hover:shadow-purple-500/30 flex items-center justify-center gap-2 group"
+              >
+                Send Message
+                <i
+                  class="fas fa-paper-plane group-hover:translate-x-1 transition"
+                ></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="py-10 border-t border-purple-500/20">
+      <div class="container-custom text-center">
+        <div class="mb-4">
+          <a href="#home" class="text-2xl font-bold text-gradient">daffa's portofolio</a>
+        </div>
+        <p class="text-gray-400 mb-3">
+          &copy; 2026 Daffa Al Syaddad. All rights reserved.
+        </p>
+        <p class="text-sm text-gray-500">
+            Designed and developed by Daffa Al Syaddad with Gemini.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script src="script.js"></script>
+  </body>
+</html>
